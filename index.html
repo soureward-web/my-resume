@@ -1,283 +1,406 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
+  <script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260922-05-b4f7588"}');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Azzelarab Khallouf Resume</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <style>
     :root {
       --yellow: #dbd31e;
       --ink: #0a0a0a;
       --cream: #f5eedc;
+      --charcoal: #1a1a1a;
+      --soft-charcoal: #292929;
     }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: "Cairo", sans-serif;
       color: var(--ink);
-      overflow-x: hidden;
     }
-    .mono { font-family: "Space Mono", monospace; }
+
+    .mono {
+      font-family: "Space Mono", monospace;
+    }
+
     .grain {
       background-image: radial-gradient(rgba(10, 10, 10, 0.12) 1px, transparent 1px);
       background-size: 18px 18px;
     }
+
     .diagonal-lines {
-      background-image: repeating-linear-gradient(-45deg, transparent, transparent 6px, rgba(245, 238, 220, 0.07) 6px, rgba(245, 238, 220, 0.07) 8px);
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 6px,
+        rgba(245, 238, 220, 0.07) 6px,
+        rgba(245, 238, 220, 0.07) 8px
+      );
     }
+
+    /* 1. تأثيرات تفاعلية احترافية للصورة الشخصية */
     .profile-frame {
       clip-path: polygon(11% 0, 100% 0, 100% 88%, 88% 100%, 0 100%, 0 12%);
       border: 4px solid var(--ink);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .profile-frame:hover {
+      transform: translateY(-6px);
+      box-shadow: 10px 10px 0 var(--yellow);
+    }
+
+    /* 2. تأثيرات تفاعلية للمهارات */
     .skill-item {
       min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      transition: transform 180ms ease, box-shadow 180ms ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
     }
     .skill-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 6px 6px 0 var(--ink);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 6px 6px 0 var(--yellow);
+      filter: brightness(1.1);
+      z-index: 10;
     }
+
+    /* 3. تأثيرات لبطاقة المشروع واللغات */
+    .hover-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 8px 8px 0 var(--yellow);
+    }
+
+    /* 4. تحسين تأثيرات أزرار الخبرات */
+    .experience-button {
+      width: 100%;
+      text-align: right;
+      transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    }
+    .experience-button:hover {
+      transform: translateX(-6px);
+      box-shadow: 4px 4px 0 var(--yellow);
+    }
+    .experience-button:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 4px;
+    }
+
     .exp-detail {
       max-height: 0;
       overflow: hidden;
       opacity: 0;
       transition: max-height 360ms ease, opacity 250ms ease, margin 250ms ease;
     }
+
     .exp-detail.open {
-      max-height: 500px;
+      max-height: 360px;
       opacity: 1;
       margin-top: 8px;
     }
-    .chevron-icon { transition: transform 260ms ease; }
-    .chevron-icon.rotated { transform: rotate(180deg); }
-    
-    /* تحسينات إضافية للهاتف */
+
+    .chevron-icon {
+      transition: transform 260ms ease, color 260ms ease;
+    }
+    .chevron-icon.rotated {
+      transform: rotate(180deg);
+      color: var(--yellow) !important;
+    }
+
+    .timeline-line {
+      background: var(--yellow);
+    }
+    .timeline-dot {
+      background: var(--yellow);
+      border: 4px solid var(--ink);
+      transition: transform 0.3s ease;
+    }
+    .experience-button:hover ~ .timeline-dot {
+      transform: scale(1.3);
+    }
+
+    /* 5. إصلاحات شاشات الهاتف للحفاظ على الترتيب العمودي */
     @media (max-width: 767px) {
+      body { overflow-x: hidden; }
+      
+      /* إجبار الشبكات على الظهور بشكل عمودي في الهاتف فقط */
+      .grid.md\:grid-cols-\[1\.25fr_\.75fr\],
+      .grid.md\:grid-cols-2,
+      .grid.md\:grid-cols-\[\.72fr_1\.28fr\],
+      .grid.md\:grid-cols-3 {
+        grid-template-columns: 1fr !important; 
+        gap: 2rem !important;
+      }
+
+      /* تصغير حجم الخط ليتناسب مع الهاتف */
+      h1 span { font-size: 50px !important; line-height: 1.1 !important; }
+      h2 { font-size: 26px !important; }
+      p.max-w-xl { font-size: 16px !important; line-height: 1.5 !important; }
+      
       .timeline-line { right: 18px !important; }
       .timeline-dot { right: 9px !important; }
-      .profile-frame { height: 300px !important; max-width: 300px; margin: 0 auto; }
-      .exp-detail.open { max-height: 800px; }
-      .experience-button { text-align: left !important; padding: 1rem !important; }
-      .experience-button > span { flex-direction: column; gap: 0.5rem; }
-      .experience-button .chevron-icon { align-self: flex-end; margin-top: -2rem; }
+      .profile-frame { height: 280px !important; max-width: 280px; margin: 0 auto; }
+      .experience-button { padding: 1.25rem !important; }
+      .experience-button > span { gap: 0.75rem; flex-direction: column; align-items: stretch; text-align: left; }
+      .experience-button .chevron-icon { align-self: flex-end; margin-top: -1.5rem; }
+      .exp-detail.open { max-height: 620px; }
+      
+      section.text-center { text-align: center !important; }
+      .justify-start { justify-content: center !important; }
+    }
+
+    @media (min-width: 768px) and (max-width: 1100px) {
+      .profile-frame { height: 360px !important; }
+      .experience-button { padding: 1.25rem !important; }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 </head>
-<body class="w-full min-h-screen bg-[#f5eedc]">
-
-  <!-- Header -->
-  <header class="w-full overflow-hidden bg-[#d9d9d9]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-0 md:pt-20">
-      <div class="grid md:grid-cols-[1.25fr_.75fr] gap-8 md:gap-10 items-end">
-        <section class="pb-12 md:pb-16">
-          <p class="mono text-xs tracking-[0.18em] mb-5 font-bold text-[#0a0a0a]">PROFESSIONAL RESUME</p>
-          <h1 class="mb-5 leading-[1.1] md:leading-[0.95]">
-            <span class="block font-black text-5xl md:text-[76px] text-[#0a0a0a]">Azzelarab</span>
-            <span class="block font-black text-5xl md:text-[76px] text-[#0a0a0a]">Khallouf</span>
-          </h1>
-          <p class="font-bold text-lg md:text-xl max-w-xl text-[#0a0a0a]">Full-Stack / Frontend Developer — Cloud Applications and SaaS Systems</p>
-          <div class="mt-8 flex flex-col sm:flex-row flex-wrap gap-x-5 gap-y-3 text-sm">
-            <a href="mailto:soureward@gmail.com" class="inline-flex items-center gap-2 font-semibold text-[#0a0a0a] hover:text-[#dbd31e] transition-colors">
-              <i data-lucide="mail" width="18" height="18"></i> <span class="text-sm md:text-base">soureward@gmail.com</span>
-            </a>
-            <a href="tel:+212600202567" class="inline-flex items-center gap-2 font-semibold text-[#0a0a0a] hover:text-[#dbd31e] transition-colors">
-              <i data-lucide="phone" width="18" height="18"></i> <span class="text-sm md:text-base">+212600202567</span>
-            </a>
-          </div>
-        </section>
-        <div class="self-end pb-8 md:pb-0">
-          <div class="profile-frame h-[330px] md:h-[430px] bg-black">
-            <img class="w-full h-full object-cover" loading="lazy" src="profile.jpg" alt="Azzelarab Khallouf">
-          </div>
-        </div>
+<body class="w-full min-h-screen" style="background: rgb(245, 238, 220);">
+  <header class="w-full overflow-hidden" style="background: rgb(217, 217, 217);">
+   <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-0 md:pt-20">
+    <div class="grid md:grid-cols-[1.25fr_.75fr] gap-8 md:gap-10 items-end">
+     <section class="pb-12 md:pb-16 text-center md:text-left">
+      <p class="mono text-xs tracking-[0.18em] mb-5 font-bold text-[#0a0a0a]">PROFESSIONAL RESUME</p>
+      <h1 class="mb-5 leading-[0.95]">
+          <span class="block font-black text-[#0a0a0a]" style="font-size: 76px;">Azzelarab</span> 
+          <span class="block font-black text-[#0a0a0a]" style="font-size: 76px;">Khallouf</span>
+      </h1>
+      <p class="font-bold max-w-xl mx-auto md:mx-0 text-[#0a0a0a]" style="font-size: 20px;">Full-Stack / Frontend Developer — Cloud Applications and SaaS Systems</p>
+      <div class="mt-8 flex flex-col md:flex-row flex-wrap gap-x-5 gap-y-3 text-sm justify-center md:justify-start">
+       <a href="mailto:soureward@gmail.com" class="inline-flex items-center gap-2 font-semibold text-[#0a0a0a] hover:text-[#dbd31e] transition-colors" style="text-decoration: none;"> <i data-lucide="mail" width="18" height="18"></i> <span style="font-size: 14px;">soureward@gmail.com</span> </a> 
+       <a href="tel:+212600202567" class="inline-flex items-center gap-2 font-semibold text-[#0a0a0a] hover:text-[#dbd31e] transition-colors" style="text-decoration: none;"> <i data-lucide="phone" width="18" height="18"></i> <span style="font-size: 14px;">+212600202567</span> </a>
       </div>
+     </section>
+     <div class="self-end mx-auto md:mx-0 pb-8 md:pb-0">
+      <div class="profile-frame h-[330px] md:h-[430px] bg-black">
+       <img class="w-full h-full object-cover" loading="lazy" src="profile.jpg" alt="Azzelarab Khallouf">
+      </div>
+     </div>
     </div>
+   </div>
   </header>
-
   <main class="w-full">
-    <!-- Summary & Skills -->
-    <section class="w-full bg-white">
-      <div class="max-w-6xl mx-auto px-6 py-16 md:py-24">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-20">
-          <article>
-            <div class="flex items-center gap-4 mb-7">
-              <span class="w-14 h-2 bg-[#dbd31e]"></span>
-              <h2 class="font-black text-2xl md:text-3xl text-[#0a0a0a]">Professional Summary</h2>
-            </div>
-            <p class="leading-relaxed text-base md:text-lg text-[#0a0a0a]">Advanced frontend and cloud application developer with hands-on experience engineering enterprise systems and transforming them into SaaS platforms. Proficient in React, TypeScript, and Supabase, with a focus on performance, data security through RLS, and user experience. My strong background in operations management and customer service gives me a practical understanding of business needs and how to turn them into effective software solutions.</p>
-            <div class="mt-10 grid gap-4">
-              <div class="flex items-center gap-3">
-                <i data-lucide="map-pin" width="19" height="19"></i> <span class="font-semibold text-base md:text-lg text-[#0a0a0a]">Casablanca, Morocco</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <i data-lucide="github" width="19" height="19"></i> 
-                <a href="https://github.com/soureward-web" target="_blank" class="font-semibold text-base md:text-lg text-[#0a0a0a] hover:text-[#dbd31e] transition-colors">GitHub</a>
-              </div>
-              <div class="flex items-center gap-3">
-                <i data-lucide="linkedin" width="19" height="19"></i> 
-                <a href="https://bit.ly/4y5cVEB" target="_blank" class="font-semibold text-base md:text-lg text-[#0a0a0a] hover:text-[#dbd31e] transition-colors">LinkedIn</a>
-              </div>
-              <div class="flex items-center gap-3">
-                <i data-lucide="globe" width="19" height="19"></i> 
-                <a href="https://erp-system-kkyt.vercel.app" target="_blank" class="font-semibold text-base md:text-lg text-[#0a0a0a] hover:text-[#dbd31e] transition-colors">SiteWeb (VortaSys)</a>
-              </div>
-            </div>
-          </article>
-          <aside>
-            <div class="flex items-center gap-4 mb-7">
-              <span class="w-14 h-2 bg-[#dbd31e]"></span>
-              <h2 class="font-black text-2xl md:text-3xl text-[#0a0a0a]">Technical Skills</h2>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div class="skill-item px-3 font-bold text-sm md:text-base bg-[#d9d9d9] text-[#0a0a0a]">React.js + TypeScript</div>
-              <div class="skill-item px-3 font-bold text-sm md:text-base bg-[#0a0a0a] text-[#f5eedc]">Supabase + PostgreSQL</div>
-              <div class="skill-item px-3 font-bold text-sm md:text-base bg-[#0a0a0a] text-[#dbd31e]">RLS + RBAC</div>
-              <div class="skill-item px-3 font-bold text-sm md:text-base bg-[#b4b4b4] text-[#0a0a0a]">PWA / Offline-First</div>
-              <div class="skill-item px-3 font-bold text-sm md:text-base bg-[#dbd31e] text-[#0a0a0a]">Material UI + Responsive UI</div>
-              <div class="skill-item px-3 font-bold text-sm md:text-base bg-[#0a0a0a] text-[#f5eedc]">i18n — RTL / LTR</div>
-              <div class="skill-item px-3 font-bold text-sm md:text-base bg-[#0a0a0a] text-[#dbd31e]">Git / GitHub / Vercel</div>
-              <div class="skill-item px-3 font-bold text-sm md:text-base bg-[#737373] text-[#0a0a0a]">Audit Logs + Barcode</div>
-            </div>
-          </aside>
+   <section class="w-full" style="background: rgb(255, 255, 255);">
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-24">
+     <div class="grid md:grid-cols-2 gap-12 md:gap-20">
+      <article>
+       <div class="flex items-center gap-4 mb-7">
+        <span class="w-14 h-2 bg-[#dbd31e]"></span>
+        <h2 class="font-black text-[#0a0a0a]" style="font-size: 24px;">Professional Summary</h2>
+       </div>
+       <p class="leading-8 md:leading-9 text-[#0a0a0a]" style="font-size: 17px;">Advanced frontend and cloud application developer with hands-on experience engineering enterprise systems and transforming them into SaaS platforms. Proficient in React, TypeScript, and Supabase, with a focus on performance, data security through RLS, and user experience. My strong background in operations management and customer service gives me a practical understanding of business needs and how to turn them into effective software solutions.</p>
+       <div class="mt-10 grid gap-4">
+        <div class="flex items-center gap-3">
+         <i data-lucide="map-pin" width="19" height="19"></i> <span class="font-semibold text-[#0a0a0a]" style="font-size: 16px;">Casablanca, Morocco</span>
         </div>
-      </div>
-    </section>
-
-    <!-- Project -->
-    <section class="w-full relative overflow-hidden bg-[#0a0a0a]">
-      <div class="diagonal-lines absolute inset-0 pointer-events-none"></div>
-      <div class="max-w-6xl mx-auto px-6 py-16 md:py-20 relative">
-        <div class="grid md:grid-cols-[.72fr_1.28fr] gap-10 items-center">
-          <div>
-            <p class="mono text-xs tracking-[0.18em] mb-4 font-bold text-[#dbd31e]">FEATURED PROJECT</p>
-            <h2 class="font-black leading-tight text-3xl md:text-4xl text-[#f5eedc]">From an Operational Idea to a SaaS Platform</h2>
-          </div>
-          <article class="p-7 md:p-9 bg-[#d9d9d9] rounded-sm">
-            <h3 class="font-black mb-4 text-xl md:text-2xl text-[#0a0a0a]">VortaSys — Multi-Company ERP / SaaS System</h3>
-            <p class="leading-relaxed text-base text-[#0a0a0a] mb-6">Engineering and building a complete enterprise system for multi-company organizations, solving real administrative and operational challenges with a scalable architecture and practical user experience.</p>
-            <div class="grid sm:grid-cols-2 gap-3 text-sm md:text-base text-[#0a0a0a] font-semibold">
-              <p>• Complete data isolation (RLS)</p>
-              <p>• Offline-first synchronization</p>
-              <p>• Smart permissions routing</p>
-              <p>• Direct thermal printing</p>
-            </div>
-          </article>
+        <div class="flex items-center gap-3">
+         <i data-lucide="github" width="19" height="19"></i> 
+         <a href="https://github.com/soureward-web" target="_blank" class="font-semibold text-[#0a0a0a] hover:text-[#dbd31e] transition-colors" style="font-size: 16px; text-decoration: none;">GitHub</a>
         </div>
-      </div>
-    </section>
-
-    <!-- Experience -->
-    <section class="w-full relative bg-[#0a0a0a]">
-      <div class="grain absolute inset-0 pointer-events-none opacity-30"></div>
-      <div class="max-w-6xl mx-auto px-6 py-16 md:py-24 relative">
-        <div class="flex items-end justify-between gap-6 mb-12">
-          <div>
-            <p class="mono text-xs tracking-[0.18em] mb-3 font-bold text-[#dbd31e]">CAREER PATH</p>
-            <h2 class="font-black text-3xl md:text-4xl text-[#f5eedc]">Professional Experience</h2>
-          </div>
-          <i data-lucide="briefcase-business" width="38" height="38" class="text-[#f5eedc] hidden sm:block"></i>
+        <div class="flex items-center gap-3">
+         <i data-lucide="linkedin" width="19" height="19"></i> 
+         <a href="https://bit.ly/4y5cVEB" target="_blank" class="font-semibold text-[#0a0a0a] hover:text-[#dbd31e] transition-colors" style="font-size: 16px; text-decoration: none;">LinkedIn</a>
         </div>
-        
-        <div class="relative">
-          <div class="timeline-line absolute top-2 bottom-3 right-[30px] w-[3px]"></div>
-          
-          <!-- Job 1 -->
-          <div class="relative pr-12 md:pr-20 pb-8">
-            <span class="timeline-dot absolute right-[21px] top-6 w-5 h-5 rounded-full"></span>
-            <button type="button" class="experience-button w-full text-left p-5 md:p-6 bg-[#1a1a1a] hover:bg-[#292929] transition-colors rounded-sm" id="exp-button-1" aria-expanded="false" aria-controls="detail-1">
-              <span class="flex justify-between items-start gap-4">
-                <span class="flex-1">
-                  <span class="block font-black text-lg md:text-2xl text-[#dbd31e]">Full-Stack Software Developer</span>
-                  <span class="mono block mt-2 text-xs md:text-sm text-[#f5eedc]">Independent / Private Projects — Casablanca, Morocco</span>
-                  <span class="mono block mt-1 text-xs text-[#bdbdbd]">2019 — 2026</span>
-                </span>
-                <i data-lucide="chevron-down" class="chevron-icon shrink-0 text-[#f5eedc]" id="chevron-1" width="24" height="24"></i>
-              </span>
-            </button>
-            <div class="exp-detail" id="detail-1">
-              <div class="p-5 md:p-6 bg-[#292929] mt-2 rounded-sm">
-                <p class="leading-relaxed text-sm md:text-base text-[#f5eedc]">Engineered and developed cloud interfaces and applications using React and Supabase. Designed and developed VortaSys, leading the transformation of internal systems into scalable SaaS platforms with a focus on security, performance, and access from any device.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Job 2 -->
-          <div class="relative pr-12 md:pr-20 pb-8">
-            <span class="timeline-dot absolute right-[21px] top-6 w-5 h-5 rounded-full"></span>
-            <button type="button" class="experience-button w-full text-left p-5 md:p-6 bg-[#1a1a1a] hover:bg-[#292929] transition-colors rounded-sm" id="exp-button-2" aria-expanded="false" aria-controls="detail-2">
-              <span class="flex justify-between items-start gap-4">
-                <span class="flex-1">
-                  <span class="block font-black text-lg md:text-2xl text-[#dbd31e]">Operations Management & Customer Service</span>
-                  <span class="mono block mt-2 text-xs md:text-sm text-[#f5eedc]">Sixt Maroc — Car Rental Division</span>
-                  <span class="mono block mt-1 text-xs text-[#bdbdbd]">2014 — 2019</span>
-                </span>
-                <i data-lucide="chevron-down" class="chevron-icon shrink-0 text-[#f5eedc]" id="chevron-2" width="24" height="24"></i>
-              </span>
-            </button>
-            <div class="exp-detail" id="detail-2">
-              <div class="p-5 md:p-6 bg-[#292929] mt-2 rounded-sm">
-                <p class="leading-relaxed text-sm md:text-base text-[#f5eedc]">Managed daily operations and delivered outstanding customer service while resolving operational challenges efficiently. This experience built a direct understanding of business needs and processes that can be improved through technology.</p>
-              </div>
-            </div>
-          </div>
-
+        <div class="flex items-center gap-3">
+         <i data-lucide="globe" width="19" height="19"></i> 
+         <a href="https://erp-system-kkyt.vercel.app" target="_blank" class="font-semibold text-[#0a0a0a] hover:text-[#dbd31e] transition-colors" style="font-size: 16px; text-decoration: none;">SiteWeb (VortaSys)</a>
         </div>
-      </div>
-    </section>
-
-    <!-- Languages -->
-    <section class="w-full bg-[#f5eedc]">
-      <div class="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <div class="flex items-center gap-4 mb-9">
-          <span class="w-14 h-2 bg-[#dbd31e]"></span>
-          <h2 class="font-black text-2xl md:text-3xl text-[#0a0a0a]">Languages</h2>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <article class="p-6 bg-[#b4b4b4] rounded-sm">
-            <h3 class="font-black mb-2 text-lg md:text-xl text-[#0a0a0a]">Arabic / Darija</h3>
-            <p class="text-sm md:text-base text-[#0a0a0a]">Native — Complete proficiency</p>
-          </article>
-          <article class="p-6 bg-[#0a0a0a] rounded-sm">
-            <h3 class="font-black mb-2 text-lg md:text-xl text-[#dbd31e]">French</h3>
-            <p class="text-sm md:text-base text-[#f5eedc]">Professional fluency</p>
-          </article>
-          <article class="p-6 bg-[#d9d9d9] rounded-sm">
-            <h3 class="font-black mb-2 text-lg md:text-xl text-[#0a0a0a]">English</h3>
-            <p class="text-sm md:text-base text-[#0a0a0a]">Very good — Tech communication</p>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="w-full bg-[#0a0a0a]">
-    <div class="max-w-6xl mx-auto px-6 py-7 flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
-      <p class="mono text-xs font-bold text-[#dbd31e]">AZZELARAB KHALLOUF</p>
-      <p class="text-sm text-[#f5eedc]">Building practical, scalable digital solutions</p>
+       </div>
+      </article>
+      <aside>
+       <div class="flex items-center gap-4 mb-7">
+        <span class="w-14 h-2 bg-[#dbd31e]"></span>
+        <h2 class="font-black text-[#0a0a0a]" style="font-size: 24px;">Technical Skills</h2>
+       </div>
+       <div class="grid grid-cols-2 gap-3">
+        <div class="skill-item px-3 font-bold text-[#0a0a0a] bg-[#d9d9d9]" style="font-size: 15px;">React.js + TypeScript</div>
+        <div class="skill-item px-3 font-bold text-[#f5eedc] bg-[#0a0a0a]" style="font-size: 15px;">Supabase + PostgreSQL</div>
+        <div class="skill-item px-3 font-bold text-[#dbd31e] bg-[#0a0a0a]" style="font-size: 15px;">RLS + RBAC</div>
+        <div class="skill-item px-3 font-bold text-[#0a0a0a] bg-[#b4b4b4]" style="font-size: 15px;">PWA / Offline-First</div>
+        <div class="skill-item px-3 font-bold text-[#0a0a0a] bg-[#dbd31e]" style="font-size: 15px;">Material UI + Responsive UI</div>
+        <div class="skill-item px-3 font-bold text-[#f5eedc] bg-[#0a0a0a]" style="font-size: 15px;">i18n — RTL / LTR</div>
+        <div class="skill-item px-3 font-bold text-[#dbd31e] bg-[#0a0a0a]" style="font-size: 15px;">Git / GitHub / Vercel</div>
+        <div class="skill-item px-3 font-bold text-[#0a0a0a] bg-[#737373]" style="font-size: 15px;">Audit Logs + Barcode</div>
+       </div>
+      </aside>
+     </div>
     </div>
-  </footer>
+   </section>
+   <section class="w-full relative overflow-hidden" style="background: rgb(10, 10, 10);">
+    <div class="diagonal-lines absolute inset-0 pointer-events-none"></div>
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-20 relative">
+     <div class="grid md:grid-cols-[.72fr_1.28fr] gap-10 items-center">
+      <div>
+       <p class="mono text-xs tracking-[0.18em] mb-4 font-bold text-[#dbd31e]">FEATURED PROJECT</p>
+       <h2 class="font-black leading-tight text-[#f5eedc]" style="font-size: 24px;">From an Operational Idea to a SaaS Platform</h2>
+      </div>
+      <article class="hover-card p-7 md:p-9 bg-[#d9d9d9]">
+       <h3 class="font-black mb-4 text-[#0a0a0a]" style="font-size: 24px;">VortaSys — Multi-Company ERP / SaaS System</h3>
+       <p class="leading-8 text-[#0a0a0a] mb-6" style="font-size: 16px;">Engineering and building a complete enterprise system for multi-company organizations, solving real administrative and operational challenges with a scalable architecture and practical user experience.</p>
+       <div class="grid sm:grid-cols-2 gap-3 text-[#0a0a0a] font-semibold" style="font-size: 15px;">
+        <p>• Complete data isolation through RLS</p>
+        <p>• Offline-first with later synchronization</p>
+        <p>• Smart permissions and page routing</p>
+        <p>• Documents and direct thermal printing</p>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="w-full relative" style="background: rgb(10, 10, 10);">
+    <div class="grain absolute inset-0 pointer-events-none opacity-30"></div>
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-24 relative">
+     <div class="flex items-end justify-between gap-6 mb-12">
+      <div>
+       <p class="mono text-xs tracking-[0.18em] mb-3 font-bold text-[#dbd31e]">CAREER PATH</p>
+       <h2 class="font-black text-[#f5eedc]" style="font-size: 24px;">Professional Experience</h2>
+      </div><i data-lucide="briefcase-business" width="38" height="38" class="text-[#f5eedc]"></i>
+     </div>
+     <div class="relative">
+      <div class="timeline-line absolute top-2 bottom-3 right-[30px] w-[3px]"></div>
+      
+      <!-- Experience 1 -->
+      <div class="relative pr-16 md:pr-20 pb-8">
+       <button type="button" class="experience-button p-6 bg-[#1a1a1a]" id="exp-button-1" aria-expanded="false" aria-controls="detail-1"> 
+        <span class="flex justify-between items-start gap-4"> 
+         <span class="flex-1 text-left"> 
+          <span class="block font-black text-[#dbd31e]" style="font-size: 24px;">Full-Stack Software Developer</span> 
+          <span class="mono block mt-2 text-[#f5eedc]" style="font-size: 13px;">Independent / Private Projects — Casablanca, Morocco</span> 
+          <span class="mono block mt-2 text-[#bdbdbd]" style="font-size: 12px;">2019 — 2026</span> 
+         </span> 
+         <i data-lucide="chevron-down" class="chevron-icon shrink-0 text-[#f5eedc]" id="chevron-1" width="24" height="24"></i> 
+        </span> 
+       </button>
+       <span class="timeline-dot absolute right-[21px] top-6 w-5 h-5 rounded-full pointer-events-none"></span> 
+       <div class="exp-detail" id="detail-1">
+        <div class="p-6 bg-[#292929]">
+         <p class="leading-8 text-[#f5eedc]" style="font-size: 15px;">Engineered and developed cloud interfaces and applications using React and Supabase. Designed and developed VortaSys, leading the transformation of internal systems into scalable SaaS platforms with a focus on security, performance, and access from any device.</p>
+        </div>
+       </div>
+      </div>
 
+      <!-- Experience 2 -->
+      <div class="relative pr-16 md:pr-20 pb-8">
+       <button type="button" class="experience-button p-6 bg-[#1a1a1a]" id="exp-button-2" aria-expanded="false" aria-controls="detail-2"> 
+        <span class="flex justify-between items-start gap-4"> 
+         <span class="flex-1 text-left"> 
+          <span class="block font-black text-[#dbd31e]" style="font-size: 24px;">Operations Management and Customer Service</span> 
+          <span class="mono block mt-2 text-[#f5eedc]" style="font-size: 13px;">Sixt Maroc — Car Rental Division</span> 
+          <span class="mono block mt-2 text-[#bdbdbd]" style="font-size: 12px;">2014 — 2019</span> 
+         </span> 
+         <i data-lucide="chevron-down" class="chevron-icon shrink-0 text-[#f5eedc]" id="chevron-2" width="24" height="24"></i> 
+        </span> 
+       </button>
+       <span class="timeline-dot absolute right-[21px] top-6 w-5 h-5 rounded-full pointer-events-none"></span> 
+       <div class="exp-detail" id="detail-2">
+        <div class="p-6 bg-[#292929]">
+         <p class="leading-8 text-[#f5eedc]" style="font-size: 15px;">Managed daily operations and delivered outstanding customer service while resolving operational challenges efficiently. This experience built a direct understanding of business needs and processes that can be improved through technology.</p>
+        </div>
+       </div>
+      </div>
+      
+      <!-- Experience 3 -->
+      <div class="relative pr-16 md:pr-20 pb-8">
+       <button type="button" class="experience-button p-6 bg-[#1a1a1a]" id="exp-button-3" aria-expanded="false" aria-controls="detail-3"> 
+        <span class="flex justify-between items-start gap-4"> 
+         <span class="flex-1 text-left"> 
+          <span class="block font-black text-[#dbd31e]" style="font-size: 24px;">Rental Agent and Logistics Coordinator</span> 
+          <span class="mono block mt-2 text-[#f5eedc]" style="font-size: 13px;">Locationauto — Morocco</span> 
+          <span class="mono block mt-2 text-[#bdbdbd]" style="font-size: 12px;">2012 — 2014</span> 
+         </span> 
+         <i data-lucide="chevron-down" class="chevron-icon shrink-0 text-[#f5eedc]" id="chevron-3" width="24" height="24"></i> 
+        </span> 
+       </button>
+       <span class="timeline-dot absolute right-[21px] top-6 w-5 h-5 rounded-full pointer-events-none"></span> 
+       <div class="exp-detail" id="detail-3">
+        <div class="p-6 bg-[#292929]">
+         <p class="leading-8 text-[#f5eedc]" style="font-size: 15px;">Managed rental requests, coordinated logistics services for customers, and followed vehicle handover and return details in a work environment built on accuracy and rapid response.</p>
+        </div>
+       </div>
+      </div>
+      
+      <!-- Experience 4 -->
+      <div class="relative pr-16 md:pr-20">
+       <button type="button" class="experience-button p-6 bg-[#1a1a1a]" id="exp-button-4" aria-expanded="false" aria-controls="detail-4"> 
+        <span class="flex justify-between items-start gap-4"> 
+         <span class="flex-1 text-left"> 
+          <span class="block font-black text-[#dbd31e]" style="font-size: 24px;">Independent Vehicle Transporter</span> 
+          <span class="mono block mt-2 text-[#f5eedc]" style="font-size: 13px;">Vehicle Transport and Fleet Management — Morocco</span> 
+          <span class="mono block mt-2 text-[#bdbdbd]" style="font-size: 12px;">2011 — 2012</span> 
+         </span> 
+         <i data-lucide="chevron-down" class="chevron-icon shrink-0 text-[#f5eedc]" id="chevron-4" width="24" height="24"></i> 
+        </span> 
+       </button>
+       <span class="timeline-dot absolute right-[21px] top-6 w-5 h-5 rounded-full pointer-events-none"></span> 
+       <div class="exp-detail" id="detail-4">
+        <div class="p-6 bg-[#292929]">
+         <p class="leading-8 text-[#f5eedc]" style="font-size: 15px;">Worked at CAHORS groupe fabrication électrique from 2008 to 2011, then independently supervised vehicle transport and fleet movements from 2011 to 2012, ensuring operational coordination, vehicle safety, and punctuality.</p>
+        </div>
+       </div>
+      </div>
+
+     </div>
+    </div>
+   </section>
+   <section class="w-full bg-[#f5eedc]">
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-20">
+     <div class="flex items-center gap-4 mb-9">
+      <span class="w-14 h-2 bg-[#dbd31e]"></span>
+      <h2 class="font-black text-[#0a0a0a]" style="font-size: 24px;">Languages</h2>
+     </div>
+     <div class="grid md:grid-cols-3 gap-4">
+      <article class="hover-card p-6 bg-[#b4b4b4]">
+       <h3 class="font-black mb-2 text-[#0a0a0a]" style="font-size: 19px;">Arabic / Moroccan Darija</h3>
+       <p class="text-[#0a0a0a]" style="font-size: 15px;">Native language — complete proficiency</p>
+      </article>
+      <article class="hover-card p-6 bg-[#0a0a0a]">
+       <h3 class="font-black mb-2 text-[#dbd31e]" style="font-size: 19px;">French</h3>
+       <p class="text-[#f5eedc]" style="font-size: 15px;">Professional fluency</p>
+      </article>
+      <article class="hover-card p-6 bg-[#d9d9d9]">
+       <h3 class="font-black mb-2 text-[#0a0a0a]" style="font-size: 19px;">English</h3>
+       <p class="text-[#0a0a0a]" style="font-size: 15px;">Very good — technical communication</p>
+      </article>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="w-full bg-[#0a0a0a]">
+   <div class="max-w-6xl mx-auto px-6 py-7 flex flex-col sm:flex-row justify-between items-center gap-3">
+    <p class="mono text-xs font-bold text-[#dbd31e]">AZZELARAB KHALLOUF</p>
+    <p class="text-sm text-[#f5eedc]">Building practical, scalable digital solutions</p>
+   </div>
+  </footer>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       lucide.createIcons();
+
       let openIndex = null;
+
       function toggleExperience(index) {
         const detail = document.getElementById("detail-" + index);
         const button = document.getElementById("exp-button-" + index);
         const chevron = document.getElementById("chevron-" + index);
         
         if (openIndex !== null && openIndex !== index) {
-          document.getElementById("detail-" + openIndex).classList.remove("open");
-          document.getElementById("exp-button-" + openIndex).setAttribute("aria-expanded", "false");
-          document.getElementById("chevron-" + openIndex).classList.remove("rotated");
+          const oldDetail = document.getElementById("detail-" + openIndex);
+          const oldButton = document.getElementById("exp-button-" + openIndex);
+          const oldChevron = document.getElementById("chevron-" + openIndex);
+          
+          if(oldDetail) oldDetail.classList.remove("open");
+          if(oldButton) oldButton.setAttribute("aria-expanded", "false");
+          if(oldChevron) oldChevron.classList.remove("rotated");
         }
-        
+
         if (openIndex === index) {
           detail.classList.remove("open");
           button.setAttribute("aria-expanded", "false");
@@ -290,9 +413,10 @@
           openIndex = index;
         }
       }
-      [1, 2].forEach(idx => {
-        const btn = document.getElementById("exp-button-" + idx);
-        if(btn) btn.addEventListener("click", () => toggleExperience(idx));
+
+      [1, 2, 3, 4].forEach((index) => {
+        const btn = document.getElementById("exp-button-" + index);
+        if(btn) btn.addEventListener("click", () => toggleExperience(index));
       });
     });
   </script>
